@@ -1,5 +1,5 @@
-  VFDPoS
-===========
+  VFD-WCN
+=========
 
 VFD-WCN is a Python library dedicated for driving multiple Wincor Nixdorf (WN) Point of Sale USB VFD (Vacuum Fluorescent Display), such as BA-63 USB.
 This library should be compatible with any WN BA-6x USB VFD.
@@ -7,7 +7,8 @@ This library should be compatible with any WN BA-6x USB VFD.
 ![BA 63 model](http://www.wincor-nixdorf.com/internet/cae/servlet/contentblob/48452/normal/49200/BA63_image.jpg)
 _BA 63 model, from Wincor Nixdorf web site_
 
-Please note that VFD-WCN is mainly an extension of VFD-POS library from https://github.com/antonio-fr/VFDPoS (Thank you Antoine)
+Please note that VFD-WCN is mainly an extension of VFD-POS library from https://github.com/antonio-fr/VFDPoS
+Many thanks to Antoine Ferron for the work.
 
 Provides high level abstraction to use Wincor Nixdorf Point of Sale VFD USB
 
