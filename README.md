@@ -1,10 +1,17 @@
   VFDPoS
 ===========
 
-VFDPoS is a Python library dedicated for driving Wincor Nixdorf Point of Sale VFD USB, such as BA-66 USB. This library should be compatible with any WN BA-6x USB VFD.
+VFD-WCN is a Python library dedicated for driving multiple Wincor Nixdorf (WN) Point of Sale USB VFD (Vacuum Fluorescent Display), such as BA-63 USB.
+This library should be compatible with any WN BA-6x USB VFD.
+
+![BA 63 model](http://www.wincor-nixdorf.com/internet/cae/servlet/contentblob/48452/normal/49200/BA63_image.jpg)
+_BA 63 model, from Wincor Nixdorf web site_
+
+Please note that VFD-WCN is mainly an extension of VFD-POS library from https://github.com/antonio-fr/VFDPoS (Thank you Antoine)
 
 Provides high level abstraction to use Wincor Nixdorf Point of Sale VFD USB
 
+* identification of each display as well as information on type and capability (2 ou 4 lines of display)
 * Easy to use and handle, play with your VFD in no time
 * Cross-platform code and dependencies
 * Full python code to access VFD through USB
@@ -17,11 +24,6 @@ Provides high level abstraction to use Wincor Nixdorf Point of Sale VFD USB
 This library needs PyUSB, it can work on mutiple OS platform.
 PyUSB always requires libusb.
 
-You only need libusb if you download the release zip file VFDPOS_vxx.zip.
-
-Some examples which pull info from Internet require Easy-REST-JSON library available at 
-https://github.com/antonio-fr/Easy-REST-JSON
-
 To test quickly, copy examples at the same level as the library (vfdpos.py) and run them.
 
 ## Using library
@@ -30,16 +32,21 @@ To test quickly, copy examples at the same level as the library (vfdpos.py) and 
 
 You need to install libusb-1.0 and PyUSB. PyUSB is provided in the zip release.
 
-For example in Ubuntu 14 :
+For example in Ubuntu 14:
 
     sudo apt-get install python libusb-1.0-0-dev
     git clone https://github.com/walac/pyusb
     cd pyusb && sudo python setup.py install
 
+On Fedora 24, it is:
+
+    sudo dnf install python libusb-devel
+    git clone https://github.com/walac/pyusb
+    cd pyusb && sudo python setup.py install
 
 ### Windows
 
-In windows you can use instead of this library : VFD-POS, which is very similar but provides driver-less, null installation and platform specific access to VFD.
+In windows you can use instead of this library : VFD-POS, frm which VFD-WCN is inspired but provides driver-less, null installation and platform specific access to a single VFD.
 https://github.com/antonio-fr/VFD-POS
 
 
@@ -48,26 +55,22 @@ The easiest way is to get Zadig and to select libusb-win32 for the Diplay Interf
 http://zadig.akeo.ie/ Then you need PyUSB (provided in zip release).
 
 
-
-
 ### Use Library
 
-To use the library, just copy vfdpos.py and use import as 
-
-usual
-
-    import vfdpos
-
-or
+To use the library, just copy vfdpos.py and use import 
 
     from vfdpos import *
 
 
 #### Initialisation
 
-Class constructor detects, tries to connect to VFD, initializes it and finally returns a library object to send commands. You need USB product ID (PID) of the VFD. For BA66 USB, this is 0x0201. For some others models this can be 0x0200.
+A Factory pattern is used to create instances of multiple connected displays according to devices dicovered by libusb.
+The kind of device to find can be specified as parameter of the factory (by default, BA63 2 lines displays).
+The vfdpos.py define constants (BA63 & BA66) for display types which are USB product IDs
 
-    MyVFD = vfdpos.vfd_pos(PRODUCT_ID)
+    factory=WincorNixdorfDisplayFactory()
+    VFDs = factory.get_vfd_pos()
+    MyVFD = VFDs[0]
 
 
 #### Self-Test
@@ -134,10 +137,12 @@ When python program stops, the display keep lighting. This command clears the di
 
 
 ## Example :
-The following example displays a basic text on a BA66 USB VFD.
+The following example displays a basic text on a BA66 USB VFD, assuming only a single display is connected.
 
-    import vfdpos
-    wnpos = vfdpos.vfd_pos(0x0201)
+    from vfdpos import *
+
+    factory=WincorNixdorfDisplayFactory()
+    wnpos = factory.get_vfd_pos(BA66)
     wnpos.write_msg("Hello World !\r\nThat works :)")
     raw_input("PRESS ENTER TO EXIT")
 
