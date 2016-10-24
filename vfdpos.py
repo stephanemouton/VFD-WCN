@@ -85,7 +85,8 @@ class vfd_pos:
 
     # Display methods
     def close(self):
-        self.clearscreen()
+        # Allow consecutive factory creations in the same program
+        usb.util.dispose_resources(self.dev)
 
     def send_buffer(self, buffer):
         self.endpoint.write(buffer)

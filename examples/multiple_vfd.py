@@ -28,7 +28,10 @@ try:
     while True:
         for vfd in vfds:
             vfd.poscur(1+vfd.get_index()%2,8)
-            vfd.write_msg("Ping")
+            if vfd.get_index()%2 == 1:
+            	vfd.write_msg("Ping")
+            else:
+                vfd.write_msg("Pong")
             time.sleep(1)
             vfd.clearscreen()
 
