@@ -64,8 +64,9 @@ class vfd_pos:
         except:
             raise IOError("Error initializing VFD " + str(index))
         self.set_charset(0x31)
-        self.clearscreen()
-        self.poscur(0, 0)
+        # Disabled for use with API
+        #self.clearscreen()
+        #self.poscur(0, 0)
 
     # Utility methods to ease management of multiple VFDs
     def get_index(self):
