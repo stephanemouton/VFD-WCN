@@ -19,7 +19,7 @@ from vfdpos import *
 
 factory=WincorNixdorfDisplayFactory()
 
-vfds = factory.get_vfd_pos(BA63)
+vfds = factory.get_vfd_pos(vfdpos.BA63)
 
 mypos = vfds[0]
 
