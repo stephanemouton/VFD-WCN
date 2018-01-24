@@ -30,7 +30,13 @@ PyUSB is installed through `pip <https://pypi.python.org/pypi/pyusb>`:
 
 ### Linux
 
+On Debian based distributions
+
 	sudo apt-get install libusb-1.0-0-dev
+
+On Fedora (replace `dnf` by `yum` for CentOS)
+
+	sudo dnf install libusb-devel
 
 ### Windows
 
@@ -46,9 +52,9 @@ http://zadig.akeo.ie/ Then you need PyUSB (provided in zip release).
 
 	pip install git+https://github.com/stephanemouton/VFD-WCN.git
 
-## Use Library
+## Usage
 
-To use the library use import 
+To use the library, add the following import in your code 
 
     from vfdpos import *
 
@@ -82,7 +88,7 @@ Tell the VFD to perform a reboot. You need to initialize VFD again after do so.
 #### Set Charset
 
 Set the VFD charset. See your WN operational manual documentation for char code.
-During initilisation, WN VFD is automatically set up to 0x31 = Code Page 850. Don't change it unless you really have specific need, this would cause issues with write_msg function.
+During initialisation, WN VFD is automatically set up to 0x31 = Code Page 850. Don't change it unless you really have specific need, this would cause issues with write_msg function.
 
 Character tables are available in :
 http://www.wincor-nixdorf.com/internet/cae/servlet/contentblob/614268/publicationFile/60592/BA6x_Character_Appendix_english.pdf

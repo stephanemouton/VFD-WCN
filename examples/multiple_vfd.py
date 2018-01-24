@@ -2,7 +2,7 @@
 # -*- coding: utf8 -*-
 
 # Example for VFDPoS library for WN VFD
-# cyvle message on multiple displays
+# cycle message on multiple displays
 # Copyright (C) 2016  Stephane MOUTON
 
 # This program is free software: you can redistribute it and/or modify
