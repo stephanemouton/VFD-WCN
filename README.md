@@ -22,28 +22,15 @@ Provides high level abstraction to use Wincor Nixdorf Point of Sale VFD USB
 
 ## Dependencies
 
-This library needs PyUSB, it can work on mutiple OS platform.
-PyUSB always requires libusb.
+This library needs PyUSB, it can work on mutiple OS platform. PyUSB always requires libusb.
 
-To test quickly, copy examples at the same level as the library (vfdpos.py) and run them.
+PyUSB is installed through `pip <https://pypi.python.org/pypi/pyusb>`:
 
-## Using library
+    pip install pyusb
 
 ### Linux
 
-You need to install libusb-1.0 and PyUSB. PyUSB is provided in the zip release.
-
-For example in Ubuntu 14:
-
-    sudo apt-get install python libusb-1.0-0-dev
-    git clone https://github.com/walac/pyusb
-    cd pyusb && sudo python setup.py install
-
-On Fedora 24, it is:
-
-    sudo dnf install python libusb-devel
-    git clone https://github.com/walac/pyusb
-    cd pyusb && sudo python setup.py install
+	sudo apt-get install libusb-1.0-0-dev
 
 ### Windows
 
@@ -55,13 +42,17 @@ If you need universal and cross-platform Python code, you can still use this lib
 The easiest way is to get Zadig and to select libusb-win32 for the Diplay Interface of your WN VFD.
 http://zadig.akeo.ie/ Then you need PyUSB (provided in zip release).
 
+## Installing library
 
-### Use Library
+	pip install git+https://github.com/stephanemouton/VFD-WCN.git
 
-To use the library, just copy vfdpos.py and use import 
+## Use Library
+
+To use the library use import 
 
     from vfdpos import *
 
+### API
 
 #### Initialisation
 

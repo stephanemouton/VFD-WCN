@@ -23,6 +23,9 @@ import usb.util
 BA63 = 0x0200
 BA66 = 0x0201
 
+__all__ = ['vfd_pos',
+           'WincorNixdorfDisplayFactory']
+
 
 class WincorNixdorfDisplayFactory:
     """Allow to create instances of WincorNixdorf(tm) display devices"""
